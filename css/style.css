@@ -104,6 +104,12 @@ a {
   display: none;
 }
 
+#onlineClass-h3 {
+  padding: 0;
+  padding-top:20px;
+  padding-bottom:10px;
+}
+
 .orange {
   background-color: #f5ae23;
 }

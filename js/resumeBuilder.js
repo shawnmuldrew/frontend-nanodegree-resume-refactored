@@ -1,3 +1,248 @@
-/*
-This is empty on purpose! Your code to build the resume will go here.
- */
+// Bio Object Definition
+var bio = {
+  "name" : "Shawn Muldrew",
+  "role" : "Web Developer",
+  "welcomeMessage" : "A skilled and experienced consultant, fully capable in the roles of data architect, database administrator, performance analyst, and very junior web developer :)",
+  "biopic" : "images/shawn300x300.jpg",
+  "contacts" : 
+  {
+    "mobile" : "888-234-5678",
+    "email" : "shawnmuldrew@gmail.com",
+    "github" : "shawnmuldrew",
+    "twitter" : "shawnmuldrew",
+    "location" : "Edmonton"
+  },
+  "skills" : ["SQL","Oracle DB","Postgresql DB","MySQL DB","Query Tuning", "PLSQL", "HTML", "CSS", "JavaScript"]
+};
+
+bio.display = function() {
+  var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
+  $("#header").prepend(formattedRole);
+  var formattedName = HTMLheaderName.replace("%data%",bio.name);
+  $("#header").prepend(formattedName);
+  var formattedMobile = HTMLmobile.replace("%data%",bio.contacts.mobile);
+  $("#topContacts").append(formattedMobile);
+  var formattedEmail = HTMLemail.replace("%data%",bio.contacts.email);
+  $("#topContacts").append(formattedEmail);
+  var formattedTwitter = HTMLtwitter.replace("%data%",bio.contacts.twitter);
+  $("#topContacts").append(formattedTwitter);
+  var formattedGithub = HTMLgithub.replace("%data%",bio.contacts.github);
+  $("#topContacts").append(formattedGithub);
+  var formattedLocation = HTMLlocation.replace("%data%",bio.contacts.location);
+  $("#topContacts").append(formattedLocation);
+  var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
+  $("#header").append(formattedWelcomeMsg);
+  var formattedImage = HTMLbioPic.replace("%data%",bio.biopic);
+  $("#header").prepend(formattedImage);
+  if (bio.skills.length > 0)
+  {
+    $("#header").append(HTMLskillsStart);
+    for (skill in bio.skills) {
+      formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
+      $("#skills").append(formattedSkill);
+    };
+  };
+  var formattedMobile = HTMLmobile.replace("%data%",bio.contacts.mobile);
+  $("#footerContacts").append(formattedMobile);
+  var formattedEmail = HTMLemail.replace("%data%",bio.contacts.email);
+  $("#footerContacts").append(formattedEmail);
+  var formattedTwitter = HTMLtwitter.replace("%data%",bio.contacts.twitter);
+  $("#footerContacts").append(formattedTwitter);
+  var formattedGithub = HTMLgithub.replace("%data%",bio.contacts.github);
+  $("#footerContacts").append(formattedGithub);
+  var formattedLocation = HTMLlocation.replace("%data%",bio.contacts.location);
+  $("#footerContacts").append(formattedLocation);
+};
+
+// Display Bio
+bio.display();
+
+// Work Object Definition
+var work = {
+  "jobs" : [
+  {
+    "employer" : "Alberta Blue Cross",
+    "title" : "Senoior Performance Analyst anbd Database Migration Specialist",
+    "location" : "Edmonton",
+    "dates" : "2013-2015",
+    "description" : "Analyzed and improved the performance of the company's new customer administration system. Migrated databases and server environments from Unix to Linux.",
+  },
+  {
+    "employer" : "Epcor",
+    "title" : "Project Manager and System Architect",
+    "location" : "Edmonton",
+    "dates" : "2012",
+    "description" : "Managed project to deploy and integrate IT Infrastructure for acquired water sites in USA. Worked with business and technical staff to define Infrastructure requirements.",
+  },
+  {
+    "employer" : "Government of Alberta",
+    "title" : "Data Architect",
+    "location" : "Edmonton",
+    "dates" : "2010-2011",
+    "description" : "Worked with business to define the requirements for a replacement Trust Management solution."
+  },
+  {
+    "employer" : "Intec",
+    "title" : "Performance Analyst",
+    "location" : "Toronto",
+    "dates" : "2008-2009",
+    "description" : "Analyzed the performance of large telecom company's billing system. Implemented and tested performance improvements."
+  }
+  ]
+};
+
+work.display = function() {
+  for (job in work.jobs) {
+    $("#workExperience").append(HTMLworkStart);
+    var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+    var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
+    var formattedEmployerTitle = formattedEmployer+formattedTitle;
+    var formattedDates = HTMLworkDates.replace("%data%",work.jobs[job].dates);
+    var formattedLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location);
+    var formattedDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description);
+    $(".work-entry:last").append(formattedEmployerTitle);
+    $(".work-entry:last").append(formattedLocation);
+    $(".work-entry:last").append(formattedDates);
+    $(".work-entry:last").append(formattedDescription);
+  }
+};
+
+
+// Display work
+if (work.jobs.length > 0)
+{
+  work.display();
+}
+
+// Define education object
+var education = {
+  "schools" : [
+   {
+      "name" : "University of Alberta",
+      "location" : "Edmonton",
+      "degree" : "Bachlor of Science",
+      "majors" : ["Computer Engineering"],
+      "dates" : 1988,
+      "url" : "http://www.test.com"
+    }
+  ],
+  "onlineCourses" : [
+  {
+    "title" : "JavaScript Basics",
+    "school" : "Udacity",
+    "dates" : 2015,
+    "url" : "https://www.udacity.com"
+  },
+  {
+    "title" : "HTML and CSS",
+    "school" : "Udacity",
+    "dates" : 2015,
+    "url" : "https://www.udacity.com"
+  },
+  {
+    "title" : "Git and Github",
+    "school" : "Udacity",
+    "dates" : 2015,
+    "url" : "https://www.udacity.com"
+  }
+  ]
+};
+
+education.display = function() {
+  $("#education").append(HTMLschoolStart);
+  if (education.schools.length > 0) {
+    for (school in education.schools) {
+      var formattedschoolName = HTMLschoolName.replace("%data%",education.schools[school].name);
+      $(".education-entry:last").append(formattedschoolName);
+      var formattedschoolDegree = HTMLschoolDegree.replace("%data%",education.schools[school].degree);
+      $(".education-entry:last").append(formattedschoolDegree);
+      var formattedschoolDates = HTMLschoolDates.replace("%data%",education.schools[school].dates);
+      $(".education-entry:last").append(formattedschoolDates);
+      var formattedschoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].location);
+      $(".education-entry:last").append(formattedschoolLocation);
+      if (education.schools[school].majors.length > 0) {
+        for (major in education.schools[school].majors) {
+          var formattedschoolMajor = HTMLschoolMajor.replace("%data%",education.schools[school].majors[major]);
+          $(".education-entry:last").append(formattedschoolMajor);
+        }
+      }
+    }
+  }
+  if (education.onlineCourses.length > 0) {
+    $(".education-entry:last").append(HTMLonlineClasses);
+    for (course in education.onlineCourses) {
+      var formattedonlineTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[course].title);
+      $(".education-entry:last").append(formattedonlineTitle);
+      var formattedonlineSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[course].school);
+      $(".education-entry:last").append(formattedschoolDegree);
+      var formattedonlineDates = HTMLonlineDates.replace("%data%",education.onlineCourses[course].dates);
+      $(".education-entry:last").append(formattedonlineDates);
+      var formattedonlineURL = HTMLonlineURL.replace("%data%",education.onlineCourses[course].url);
+      $(".education-entry:last").append(formattedonlineURL);
+    }
+  }
+};
+
+// Display Education
+education.display();
+
+// Define Projects object
+var projects = { 
+  "projects" : [
+  {
+    "title" : "Data Conversion",
+    "dates" : "Jan 2004 - Jul 2005",
+    "description" : "Migrate data to new application. Lots of data!",
+    "images" : ["images/data-conversion.jpg","images/data-conversion-2.jpg"]
+  },
+  {
+    "title" : "Application Performance",
+    "dates" : "Aug 2007 - Jul 2008",
+    "description" : "Fix the slow application. Very slow!",
+    "images" : ["images/performance-1.jpg"]
+  }
+  ]
+};
+
+projects.display = function() {
+  for (project in projects.projects) {
+    $("#projects").append(HTMLprojectStart);
+    var formattedTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
+    $(".project-entry:last").append(formattedTitle);
+    var formattedDate = HTMLprojectDates.replace("%data%",projects.projects[project].dates);
+    $(".project-entry:last").append(formattedDate);
+    var formattedDescription = HTMLprojectDescription.replace("%data%",projects.projects[project].description);
+    $(".project-entry:last").append(formattedDescription);
+    if (projects.projects[project].images.length > 0) {
+      for (image in projects.projects[project].images) {
+        var formattedImage = HTMLprojectImage.replace("%data%",projects.projects[project].images[image]);
+        $(".project-entry:last").append(formattedImage);
+      }
+    }
+  }
+};
+
+//Display Projects
+projects.display();
+
+
+$("#main").append(internationalizeButton);
+
+$("#mapDiv").append(googleMap);
+
+function inName(){
+  var internationalName = bio.name;
+  var names = internationalName.split(" ");
+  names[0] = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
+  names[1] = names[1].toUpperCase();
+  internationalName = names.join(" ");
+  return internationalName;
+}
+
+  
+
+//$("#main").append(bio.name);
+//$("#main").append(bio.role);
+//$("#main").append(bio.contactInfo);
+//$("#main").append(bio.pictureURL);
+//$("#main").append(bio.skills);
