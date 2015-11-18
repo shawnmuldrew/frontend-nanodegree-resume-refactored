@@ -35,7 +35,7 @@ bio.display = function() {
   var formattedImage = HTMLbioPic.replace("%data%",bio.biopic);
   $("#header").prepend(formattedImage);
   $("#header").append(HTMLskillsStart);
-  for (var skill = 0; skill < bio.skills.length; skill++) {
+  for (var skill = 0, len = bio.skills.length; skill < len; skill++) {
     formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
     $("#skills").append(formattedSkill);
   }
@@ -89,7 +89,7 @@ var work = {
 };
 
 work.display = function() {
-  for (var job = 0; job < work.jobs.length; job++) {
+  for (var job = 0, len = work.jobs.length; job < len; job++) {
     $("#workExperience").append(HTMLworkStart);
     var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
     var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
@@ -104,12 +104,8 @@ work.display = function() {
   }
 };
 
-
 // Display work
-if (work.jobs.length > 0)
-{
   work.display();
-}
 
 // Define education object
 var education = {
@@ -147,7 +143,7 @@ var education = {
 
 education.display = function() {
   $("#education").append(HTMLschoolStart);
-  for (var school = 0; school <  education.schools.length; school++) {
+  for (var school = 0, len = education.schools.length; school < len; school++) {
     var formattedschoolName = HTMLschoolName.replace("%data%",education.schools[school].name);
     $(".education-entry:last").append(formattedschoolName);
     var formattedschoolDegree = HTMLschoolDegree.replace("%data%",education.schools[school].degree);
@@ -156,13 +152,13 @@ education.display = function() {
     $(".education-entry:last").append(formattedschoolDates);
     var formattedschoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].location);
     $(".education-entry:last").append(formattedschoolLocation);
-    for (major = 0; major < education.schools[school].majors.length; major++) {
+    for (major = 0, len = education.schools[school].majors.length; major < len;  major++) {
       var formattedschoolMajor = HTMLschoolMajor.replace("%data%",education.schools[school].majors[major]);
       $(".education-entry:last").append(formattedschoolMajor);
     }
   }
   $(".education-entry:last").append(HTMLonlineClasses);
-  for (var course = 0; course <  education.onlineCourses.length; course++) {
+  for (var course = 0, len = education.onlineCourses.length; course < len; course++) {
     var formattedonlineTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[course].title);
     $(".education-entry:last").append(formattedonlineTitle);
     var formattedonlineSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[course].school);
@@ -196,7 +192,7 @@ var projects = {
 };
 
 projects.display = function() {
-  for (var project = 0; project <  projects.projects.length; project++) {
+  for (var project = 0, len = projects.projects.length; project < len; project++) {
     $("#projects").append(HTMLprojectStart);
     var formattedTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
     $(".project-entry:last").append(formattedTitle);
@@ -204,7 +200,7 @@ projects.display = function() {
     $(".project-entry:last").append(formattedDate);
     var formattedDescription = HTMLprojectDescription.replace("%data%",projects.projects[project].description);
     $(".project-entry:last").append(formattedDescription);
-    for (var image = 0; image < projects.projects[project].images.length; image++) {
+    for (var image = 0, len = projects.projects[project].images.length; image < len; image++) {
       var formattedImage = HTMLprojectImage.replace("%data%",projects.projects[project].images[image]);
       $(".project-entry:last").append(formattedImage);
     }
@@ -214,16 +210,5 @@ projects.display = function() {
 //Display Projects
 projects.display();
 
-
-$("#main").append(internationalizeButton);
-
 $("#mapDiv").append(googleMap);
 
-function inName(){
-  var internationalName = bio.name;
-  var names = internationalName.split(" ");
-  names[0] = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
-  names[1] = names[1].toUpperCase();
-  internationalName = names.join(" ");
-  return internationalName;
-}
